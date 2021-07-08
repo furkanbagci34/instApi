@@ -21,89 +21,69 @@ let videocaption2
 let videocaption3
 
 const client = new Instagram({ username, password })
+
+LoginAndStart()
+
 function LoginAndStart()
 {
+  console.log(1)
   ;(async () => {
-    await client.login({ username: 'trivela.sport', password: 'elitebook11' })       
+    await client.login({ username: 'canlimaclinkleri3', password: '5795612f' })       
 
-    setTimeout(OtoShare, 3000);
-    setInterval(OtoFollow,7200000)
-    setInterval(unFollowAllList,14900000)
+    setInterval(OtoShare, 500000);
+    //setInterval(OtoFollow,7200000)
+    //setInterval(unFollowAllList,14900000)
     // setInterval(LogoutAndLogin,72000000)
     //deleteAll()
   })()
 }
 function OtoShare()
 {
+  console.log(2)
     ;(async () => {
-      const Post1 = await client.getPhotosByUsername({ username: 'sporx', first: '1', after: ''  })
-      const Post2 = await client.getPhotosByUsername({ username: 'sporotag', first: '1', after: ''  })
-      const Post3 = await client.getPhotosByUsername({ username: 'bbofootball', first: '1', after: ''  })
-      const Post4 = await client.getPhotosByUsername({ username: 'euro2020goal', first: '1', after: ''  })
-      const Post5 = await client.getPhotosByUsername({ username: 'football_video_status', first: '1', after: ''  })
-      const Post6 = await client.getPhotosByUsername({ username: 'football___editors___video', first: '1', after: ''  })
+      // const Post1 = await client.getPhotosByUsername({ username: 'sporx', first: '1', after: ''  })
+      // const Post2 = await client.getPhotosByUsername({ username: 'sporotag', first: '1', after: ''  })
+      // const Post3 = await client.getPhotosByUsername({ username: 'bbofootball', first: '1', after: ''  })
+      const Post4 = await client.getPhotosByUsername({ username: 'football_videos_status_', first: '1', after: ''  })
+      // const Post5 = await client.getPhotosByUsername({ username: 'football_video_status', first: '1', after: ''  })
+      // const Post6 = await client.getPhotosByUsername({ username: 'football___editors___video', first: '1', after: ''  })
   
-     if(Post1.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphImage' || Post1.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphSidecar')
-     {
-       if(Post1.user.edge_owner_to_timeline_media.edges[0].node.id != resim1)
-       {
-        resim1 = Post1.user.edge_owner_to_timeline_media.edges[0].node.id
-        const photo = Post1.user.edge_owner_to_timeline_media.edges[0].node.display_url
-        await client.uploadPhoto({ photo, caption: Post1.user.edge_owner_to_timeline_media.edges[0].node.edge_media_to_caption.edges[0].node.text , post: 'feed' })
-        console.log(1)
-       }
-     }
-     if(Post2.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphImage' || Post2.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphSidecar')
-     {
-       if(Post2.user.edge_owner_to_timeline_media.edges[0].node.id != resim2)
-       {
-          resim2 = Post2.user.edge_owner_to_timeline_media.edges[0].node.id
-          const photo = Post2.user.edge_owner_to_timeline_media.edges[0].node.display_url
-          await client.uploadPhoto({ photo,caption: Post2.user.edge_owner_to_timeline_media.edges[0].node.edge_media_to_caption.edges[0].node.text , post: 'feed' })
-       }
-     }
-     if(Post3.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphImage' || Post3.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphSidecar')
-     {
-       if(Post3.user.edge_owner_to_timeline_media.edges[0].node.id != resim3)
-       {
-          resim3 = Post3.user.edge_owner_to_timeline_media.edges[0].node.id
-          const photo = Post3.user.edge_owner_to_timeline_media.edges[0].node.display_url
-          await client.uploadPhoto({ photo, caption:  Post3.user.edge_owner_to_timeline_media.edges[0].node.edge_media_to_caption.edges[0].node.text , post: 'feed' })
-       }
-     }
      if(Post4.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphVideo' )
      {
-       if(Post4.user.edge_owner_to_timeline_media.edges[0].node.id != resim4)
+       console.log(resim4)
+       console.log(Post4.user.edge_owner_to_timeline_media.edges[0].node.thumbnail_src)
+       if(Post4.user.edge_owner_to_timeline_media.edges[0].node.thumbnail_src != resim4)
        {
-          resim4 = Post4.user.edge_owner_to_timeline_media.edges[0].node.id
+          resim4 = Post4.user.edge_owner_to_timeline_media.edges[0].node.thumbnail_src
           video1 = Post4.user.edge_owner_to_timeline_media.edges[0].node.video_url
+          console.log(resim4)
           videocaption1 = Post4.user.edge_owner_to_timeline_media.edges[0].node.edge_media_to_caption.edges[0].node.text
           Downloadvideo1()
        }
      }
-     if(Post5.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphVideo' )
-     {
-       if(Post5.user.edge_owner_to_timeline_media.edges[0].node.id != resim5)
-       {
-        resim5 = Post5.user.edge_owner_to_timeline_media.edges[0].node.id
-        video2 = Post5.user.edge_owner_to_timeline_media.edges[0].node.video_url
-        videocaption2 = 'FOLLOW @trivela.sport                  #football #skill #goal'
+    //  if(Post5.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphVideo' )
+    //  {
+    //    if(Post5.user.edge_owner_to_timeline_media.edges[0].node.id != resim5)
+    //    {
+    //     resim5 = Post5.user.edge_owner_to_timeline_media.edges[0].node.id
+    //     video2 = Post5.user.edge_owner_to_timeline_media.edges[0].node.video_url
+    //     videocaption2 = 'FOLLOW @canlimaclinkleri3                  #football #skill #goal'
 
-        Downloadvideo2()
-       }
-     }
-     if(Post6.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphVideo' )
-     {
-       if(Post6.user.edge_owner_to_timeline_media.edges[0].node.id != resim6)
-       {
-        resim6 = Post6.user.edge_owner_to_timeline_media.edges[0].node.id
-        video3 = Post6.user.edge_owner_to_timeline_media.edges[0].node.video_url
-        videocaption3 = 'FOLLOW @trivela.sport                  #football #skill #goal'
-        Downloadvideo3()
-       }
-     }
+    //     Downloadvideo2()
+    //    }
+    //  }
+    //  if(Post6.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphVideo' )
+    //  {
+    //    if(Post6.user.edge_owner_to_timeline_media.edges[0].node.id != resim6)
+    //    {
+    //     resim6 = Post6.user.edge_owner_to_timeline_media.edges[0].node.id
+    //     video3 = Post6.user.edge_owner_to_timeline_media.edges[0].node.video_url
+    //     videocaption3 = 'FOLLOW @canlimaclinkleri3                  #football #skill #goal'
+    //     Downloadvideo3()
+    //    }
+    //  }
     })()
-  }
+}
   function OtoFollow(){
     ;(async () => {
          
@@ -140,7 +120,7 @@ function OtoShare()
   // } 
   async function deleteAll()
   {
-    const Post1 = await client.getPhotosByUsername({ username: 'trivela.sport', first: '49', after: ''  })
+    const Post1 = await client.getPhotosByUsername({ username: 'canlimaclinkleri3', first: '49', after: ''  })
     console.log(Post1.user.edge_owner_to_timeline_media.edges)
 
      Post1.user.edge_owner_to_timeline_media.edges.forEach(async followItems =>
@@ -153,6 +133,7 @@ function Downloadvideo1()
 {
   const http = require('https'); // or 'https' for https:// URLs
   const fs = require('fs');
+  console.log(video1)
   
   const file = fs.createWriteStream("file1.mp4");
   const request = http.get(video1, function(response) {
@@ -211,6 +192,15 @@ function Downloadvideo3()
 
   VideoPaylas('file3.mp4','filePhoto3.jpeg',videocaption3)
 }
+let ID = "canlimaclinkleri3";
+let SIFRE = "5795612f";
+
+ig.state.generateDevice(ID);
+async function login() 
+{
+    ig.state.generateDevice(ID);
+    await ig.account.login(ID, SIFRE);
+}
 function VideoPaylas(videolink,fotolink,videocaption)
 {
     (async () => {
@@ -224,7 +214,7 @@ function VideoPaylas(videolink,fotolink,videocaption)
           // read the file into a Buffer
           video: await readFileAsync(videoPath),
           coverImage: await readFileAsync(coverPath),
-          caption : videocaption
+          caption : "FOLLOW @canlimaclinkleri3                  #football #skill #goal"
           /*
             this does also support:
             caption (string),  ----+
@@ -233,18 +223,11 @@ function VideoPaylas(videolink,fotolink,videocaption)
            */
         });
       
-        // console.log(publishResult);
+        console.log("paylasim yapildi");
     })();
 }
-let ID = "trivela.sport";
-let SIFRE = "elitebook11";
 
-ig.state.generateDevice(ID);
-async function login() 
-{
-    ig.state.generateDevice(ID);
-    await ig.account.login(ID, SIFRE);
-}
+
 
   
-setTimeout(LoginAndStart, 3000);
+//setTimeout(LoginAndStart, 3000);
