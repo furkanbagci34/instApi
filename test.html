@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="status"><span class="online">Online/</span></p> <b id="game_status_online" style="color:#695842">(0)</b>
+
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<script>
+
+$( document ).ready(function() {
+    $("#game_status_online").empty();
+    $("#game_status_offshop").empty();
+        var test = 1000;
+        //console.log(myObj);       
+        
+        //$("#accCount").append("("+myObj.account+")");
+        //setInterval(function(){
+        //	var rnd = Math.floor((Math.random() * 5) + 1);
+        //	$("#accCount").empty();
+        //	$.getJSON("results.json", function(json) {
+        //	    if(json>myObj.account+rnd)
+        //	    	myObj.account = json;
+        //	   	//else
+        //	   		
+        //	});
+        //	
+        //	
+        //	
+        //	$("#accCount").append("("+(myObj.account+rnd)+")");
+        //	myObj.account+=rnd;
+        //}, 2000);
+        $("#game_status_online").append("("+test+")");
+        
+        var f=true;
+        setInterval(function(){
+            $("#online_board").show();
+            var rnd = Math.floor((Math.random() * 30) + 1);
+            if(f)
+                rnd *= -1;
+            f = !f;
+            if(test+rnd<0)
+                return;
+            $("#game_status_online").empty();
+            //$("#game_status_offshop").empty();
+            $("#game_status_online").append("("+(test+rnd)+")");
+            //$("#game_status_offshop").append("("+(myObj.offshop+rnd)+")");
+            //full 10.000 olsun
+            var s=((test+rnd)*100)/40000;
+            $("#full_bar span").remove();
+            $("#full_bar").css("width", s+"%");
+            $("#full_bar").append("<span>"+(parseInt(s))+"%</span>");
+            $("#empt_bar span").remove();
+            $("#empt_bar").css("width", (100-s)+"%");
+            $("#empt_bar").append("<span>"+(100-parseInt(s))+"%</span>");
+            }, 1000);
+            console.log(test)
+});
+</script>
+</html>
