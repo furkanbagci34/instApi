@@ -19,7 +19,9 @@ let video3
 let videocaption1
 let videocaption2
 let videocaption3
-let repositoryId
+let repositoryId1
+let repositoryId2
+let repositoryId3
 
 const client = new Instagram({ username, password })
 
@@ -29,11 +31,11 @@ function LoginAndStart()
 {
   console.log(1)
   ;(async () => {
-    await client.login({ username: 'kisahikayetv', password: '5795612f' })       
+    await client.login({ username: 'trivela.sport', password: 'elitebook11' })       
 
-    setInterval(OtoShare, 500000);
-    //setInterval(OtoFollow,7200000)
-    //setInterval(unFollowAllList,14900000)
+    setInterval(OtoShare, 3600000);
+    setInterval(OtoFollow,7200000)
+    setInterval(unFollowAllList,14900000)
     // setInterval(LogoutAndLogin,72000000)
     //deleteAll()
   })()
@@ -42,18 +44,51 @@ function OtoShare()
 {
   console.log(2)
     ;(async () => {
-      // const Post1 = await client.getPhotosByUsername({ username: 'sporx', first: '1', after: ''  })
-      // const Post2 = await client.getPhotosByUsername({ username: 'sporotag', first: '1', after: ''  })
-      // const Post3 = await client.getPhotosByUsername({ username: 'bbofootball', first: '1', after: ''  })
-      const Post4 = await client.getPhotosByUsername({ username: 'tv_makara', first: '1', after: ''  })
-      // const Post5 = await client.getPhotosByUsername({ username: 'football_video_status', first: '1', after: ''  })
-      // const Post6 = await client.getPhotosByUsername({ username: 'football___editors___video', first: '1', after: ''  })
+      const Post1 = await client.getPhotosByUsername({ username: 'sporx', first: '1', after: ''  })
+      const Post2 = await client.getPhotosByUsername({ username: 'sporotag', first: '1', after: ''  })
+      const Post3 = await client.getPhotosByUsername({ username: 'trtspor', first: '1', after: ''  })
+      if(Post1.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphImage' || Post1.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphSidecar')
+      {
+        if(Post1.user.edge_owner_to_timeline_media.edges[0].node.id != resim1)
+        {
+         resim1 = Post1.user.edge_owner_to_timeline_media.edges[0].node.id
+         const photo = Post1.user.edge_owner_to_timeline_media.edges[0].node.display_url
+         await client.uploadPhoto({ photo, caption: Post1.user.edge_owner_to_timeline_media.edges[0].node.edge_media_to_caption.edges[0].node.text , post: 'feed' })
+         console.log(1)
+        }
+      }
+      if(Post2.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphImage' || Post2.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphSidecar')
+      {
+        if(Post2.user.edge_owner_to_timeline_media.edges[0].node.id != resim2)
+        {
+           resim2 = Post2.user.edge_owner_to_timeline_media.edges[0].node.id
+           const photo = Post2.user.edge_owner_to_timeline_media.edges[0].node.display_url
+           await client.uploadPhoto({ photo,caption: Post2.user.edge_owner_to_timeline_media.edges[0].node.edge_media_to_caption.edges[0].node.text , post: 'feed' })
+        }
+      }
+      if(Post3.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphImage' || Post3.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphSidecar')
+      {
+        if(Post3.user.edge_owner_to_timeline_media.edges[0].node.id != resim3)
+        {
+           resim3 = Post3.user.edge_owner_to_timeline_media.edges[0].node.id
+           const photo = Post3.user.edge_owner_to_timeline_media.edges[0].node.display_url
+           await client.uploadPhoto({ photo, caption:  Post3.user.edge_owner_to_timeline_media.edges[0].node.edge_media_to_caption.edges[0].node.text , post: 'feed' })
+        }
+      }
+      OtoVideoShare1()
   
-    if(Post4.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphVideo' )
+    
+    })()
+}
+async function OtoVideoShare1()
+{
+  const Post4 = await client.getPhotosByUsername({ username: 'freshhfootball', first: '1', after: ''  })
+
+  if(Post4.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphVideo' )
     {
-      if(Post4.user.edge_owner_to_timeline_media.edges[0].node.id != repositoryId)
+      if(Post4.user.edge_owner_to_timeline_media.edges[0].node.id != repositoryId1)
       {  
-        repositoryId = Post4.user.edge_owner_to_timeline_media.edges[0].node.id
+        repositoryId1 = Post4.user.edge_owner_to_timeline_media.edges[0].node.id
         resim4 = Post4.user.edge_owner_to_timeline_media.edges[0].node.thumbnail_src
         video1 = Post4.user.edge_owner_to_timeline_media.edges[0].node.video_url
         console.log(resim4)
@@ -61,54 +96,65 @@ function OtoShare()
         Downloadvideo1()
       }
     }
-    //  if(Post5.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphVideo' )
-    //  {
-    //    if(Post5.user.edge_owner_to_timeline_media.edges[0].node.id != resim5)
-    //    {
-    //     resim5 = Post5.user.edge_owner_to_timeline_media.edges[0].node.id
-    //     video2 = Post5.user.edge_owner_to_timeline_media.edges[0].node.video_url
-    //     videocaption2 = 'FOLLOW @kisahikayetv                  #football #skill #goal'
-
-    //     Downloadvideo2()
-    //    }
-    //  }
-    //  if(Post6.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphVideo' )
-    //  {
-    //    if(Post6.user.edge_owner_to_timeline_media.edges[0].node.id != resim6)
-    //    {
-    //     resim6 = Post6.user.edge_owner_to_timeline_media.edges[0].node.id
-    //     video3 = Post6.user.edge_owner_to_timeline_media.edges[0].node.video_url
-    //     videocaption3 = 'FOLLOW @kisahikayetv                  #football #skill #goal'
-    //     Downloadvideo3()
-    //    }
-    //  }
-    })()
 }
-  // function OtoFollow(){
-  //   ;(async () => {
+async function OtoVideoShare2()
+{
+  const Post5 = await client.getPhotosByUsername({ username: 'footballpassage7', first: '1', after: ''  })
+
+  if(Post5.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphVideo' )
+     {
+       if(Post5.user.edge_owner_to_timeline_media.edges[0].node.id != repositoryId2)
+       {
+        repositoryId2 = Post5.user.edge_owner_to_timeline_media.edges[0].node.id
+        resim5 = Post5.user.edge_owner_to_timeline_media.edges[0].node.thumbnail_src
+        video2 = Post5.user.edge_owner_to_timeline_media.edges[0].node.video_url
+        videocaption2 = 'FOLLOW @trivela.sport                  #football #skill #goal'
+
+        Downloadvideo2()
+       }
+     }
+}
+async function OtoVideoShare3()
+{
+  const Post6 = await client.getPhotosByUsername({ username: 'ahmedfazehd', first: '1', after: ''  })
+
+   if(Post6.user.edge_owner_to_timeline_media.edges[0].node.__typename == 'GraphVideo' )
+     {
+       if(Post6.user.edge_owner_to_timeline_media.edges[0].node.id != repositoryId3)
+       {
+        repositoryId3 = Post6.user.edge_owner_to_timeline_media.edges[0].node.id
+        resim6 = Post6.user.edge_owner_to_timeline_media.edges[0].node.thumbnail_src
+        video3 = Post6.user.edge_owner_to_timeline_media.edges[0].node.video_url
+        videocaption3 = 'FOLLOW @trivela.sport                  #football #skill #goal'
+        Downloadvideo3()
+       }
+     }
+}
+  function OtoFollow(){
+    ;(async () => {
          
-  //      const Post1 = await client.getPhotosByUsername({ username: 'trtspor', first: '1', after: ''  })
-  //      const likes = await client.getMediaLikes({ shortcode: Post1.user.edge_owner_to_timeline_media.edges[0].node.shortcode, first: '15', after: '' })
-  //      likes.edges.forEach(async followItems =>
-  //       {
-  //         await client.follow({ userId: followItems.node.id })
-  //       })
-  //   })()
-  // } 
-  // function unFollowAllList()
-  // {
-  //   ;(async () => {
+       const Post1 = await client.getPhotosByUsername({ username: 'trtspor', first: '1', after: ''  })
+       const likes = await client.getMediaLikes({ shortcode: Post1.user.edge_owner_to_timeline_media.edges[0].node.shortcode, first: '15', after: '' })
+       likes.edges.forEach(async followItems =>
+        {
+          await client.follow({ userId: followItems.node.id })
+        })
+    })()
+  } 
+  function unFollowAllList()
+  {
+    ;(async () => {
       
-  //   const follows = await client.getFollowings({ userId: '43948640389',first: '49' })
+    const follows = await client.getFollowings({ userId: '43948640389',first: '49' })
   
   
-  //   follows.data.forEach(async followItems =>
-  //     {
-  //       await client.unfollow({ userId: followItems.id })
+    follows.data.forEach(async followItems =>
+      {
+        await client.unfollow({ userId: followItems.id })
   
-  //     })
-  //   })()
-  // } 
+      })
+    })()
+  } 
   // function LogoutAndLogin()
   // {
   //   ;(async () => {
@@ -129,7 +175,7 @@ function OtoShare()
   //        console.log(1)
   //      })
   // }
-function Downloadvideo1()
+async function Downloadvideo1()
 {
   const http = require('https'); // or 'https' for https:// URLs
   const fs = require('fs');
@@ -149,51 +195,53 @@ function Downloadvideo1()
 
   });
 
-  VideoPaylas('file1.mp4','filePhoto1.jpeg',videocaption2)
+   await VideoPaylas('file1.mp4','filePhoto1.jpeg',videocaption2)
+   setTimeout(OtoVideoShare2,60000)
+ }
+function Downloadvideo2()
+{
+  const http = require('https'); // or 'https' for https:// URLs
+  const fs = require('fs');
+  
+  const file = fs.createWriteStream("file2.mp4");
+  const request = http.get(video2, function(response) {
+    response.pipe(file);
+
+    
+    
+  });
+  const filePhoto = fs.createWriteStream("filePhoto2.jpeg");
+  const request1 = http.get(resim5, function(response) {
+    response.pipe(filePhoto);
+
+
+  });
+  VideoPaylas('file2.mp4','filePhoto2.jpeg',videocaption2)
+  setTimeout(OtoVideoShare3,60000)
 }
-// function Downloadvideo2()
-// {
-//   const http = require('https'); // or 'https' for https:// URLs
-//   const fs = require('fs');
+function Downloadvideo3()
+{
+  const http = require('https'); // or 'https' for https:// URLs
+  const fs = require('fs');
   
-//   const file = fs.createWriteStream("file2.mp4");
-//   const request = http.get(video2, function(response) {
-//     response.pipe(file);
+  const file = fs.createWriteStream("file3.mp4");
+  const request = http.get(video3, function(response) {
+    response.pipe(file);
 
     
     
-//   });
-//   const filePhoto = fs.createWriteStream("filePhoto2.jpeg");
-//   const request1 = http.get(resim5, function(response) {
-//     response.pipe(filePhoto);
+  });
+  const filePhoto = fs.createWriteStream("filePhoto3.jpeg");
+  const request1 = http.get(resim6, function(response) {
+    response.pipe(filePhoto);
 
 
-//   });
-//   VideoPaylas('file2.mp4','filePhoto2.jpeg',videocaption2)
-// }
-// function Downloadvideo3()
-// {
-//   const http = require('https'); // or 'https' for https:// URLs
-//   const fs = require('fs');
-  
-//   const file = fs.createWriteStream("file3.mp4");
-//   const request = http.get(video3, function(response) {
-//     response.pipe(file);
+  });
 
-    
-    
-//   });
-//   const filePhoto = fs.createWriteStream("filePhoto3.jpeg");
-//   const request1 = http.get(resim6, function(response) {
-//     response.pipe(filePhoto);
-
-
-//   });
-
-//   VideoPaylas('file3.mp4','filePhoto3.jpeg',videocaption3)
-// }
-let ID = "kisahikayetv";
-let SIFRE = "5795612f";
+  VideoPaylas('file3.mp4','filePhoto3.jpeg',videocaption3)
+}
+let ID = "trivela.sport";
+let SIFRE = "elitebook11";
 
 ig.state.generateDevice(ID);
 async function login() 
@@ -214,7 +262,7 @@ function VideoPaylas(videolink,fotolink,videocaption)
           // read the file into a Buffer
           video: await readFileAsync(videoPath),
           coverImage: await readFileAsync(coverPath),
-          caption : "DAHA FAZLA VIDEO İÇİN @kisahikayetv TAKİP EDİN\n #komikvideolar #çghb #güldürgüldür #güldürgüldürshow #çghb2 #skeç #mizah"
+          caption : "Güncel İçerikler için Takip Edin.. FOLLOW @trivela.sport         \n         #football #skill #goal"
           /*
             this does also support:
             caption (string),  ----+
