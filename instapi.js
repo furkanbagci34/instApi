@@ -6,8 +6,8 @@ const readFileAsync = promisify(readFile);
 
 const ig = new IgApiClient();
 
-let ID = "canlimaclinkleri3";
-let SIFRE = "12FURkan98";
+let ID = "";
+let SIFRE = "";
 
 ig.state.generateDevice(ID);
 async function login() 
